@@ -1,6 +1,18 @@
-import {createStore, combineReducers} from 'redux'
-import {reducerA} from './reducers'
+import {createStore, combineReducers, applyMiddleware} from 'redux'
+import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
+import {composeWithDevTools} from 'redux-devtools-extension'
+import slotsReducer from './reducers/slotsReducer';
+import storeReducer from './reducers/storeReducer';
 
-const rootReducer = combineReducers(reducerA)
+const reducer = combineReducers({slots: slotsReducer, store: storeReducer})
 
-export const store = createStore(rootReducer)
+const middleware = composeWithDevTools(applyMiddleware(
+  thunkMiddleware,
+  createLogger({collapsed: true})
+))
+const store = createStore(reducer, middleware)
+
+export default store;
+export * from "./reducers/slotsReducer"; 
+export * from "./reducers/storeReducer";
