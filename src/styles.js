@@ -14,7 +14,7 @@ const Global = createGlobalStyle`
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+
     user-select: none;
     background: #f5f5f5;
     padding: 20px;

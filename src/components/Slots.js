@@ -44,12 +44,11 @@ function Slots() {
     unique: true,
     trail: 400 / data.length,
     from: { opacity: 0, transform: 'scale(0)' },
-    enter: { opacity: 1, transform: 'scale(1)' },
-    leave: { opacity: 0, transform: 'scale(0)' }
+    enter: { opacity: 1, transform: 'scale(1)' }
   })
 
   const selectBooking = (booking) => {
-    //Add once login fully functional:
+    //Add once login fully functional-- needs userId passed in:
     // this.props.postBooking(booking);
     history.push('/bookingConfirmation')
   }
@@ -62,7 +61,7 @@ function Slots() {
       <Global />
       <Container style={{ ...rest, width: size, height: size }} onClick={() => set(open => !open)}>
       { transitions ? transitions.map(({ item, key, props }) => (
-          <Item key={key} style={{ ...props, background: item.css }} onClick= { e => selectBooking(item)} ><br />{item.formattedStartTime}-{item.formattedEndTime} <br /> <br /></Item>
+          <Item key={key} style={{ ...props, background: item.css }} onClick= { e => selectBooking(item)} ><br /> {item.formattedStartTime}-{item.formattedEndTime} <br /> <br /></Item>
         )) : "There are no available slots today." }
       </Container>
     </>
