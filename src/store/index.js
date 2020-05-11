@@ -5,6 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import slotsReducer from './reducers/slotsReducer';
 import storeReducer from './reducers/storeReducer';
 import bookingsReducer from './reducers/bookingsReducer';
+import emailReducer from './reducers/emailReducer';
 
 const reducer = combineReducers({ slots: slotsReducer, store: storeReducer, bookings: bookingsReducer })
 
@@ -18,3 +19,4 @@ export default store;
 export * from "./reducers/slotsReducer"; 
 export * from "./reducers/storeReducer";
 export * from "./reducers/bookingsReducer";
+export * from "./reducers/emailReducer";

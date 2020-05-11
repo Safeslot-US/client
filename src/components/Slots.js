@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAvailSlots, fetchStore, postBooking } from "../store"
+import { fetchAvailSlots, fetchStore, postBooking, postEmail } from "../store"
 import { useParams } from "react-router-dom";
 import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
 import { Global, Container, Item } from '../styles'
@@ -49,7 +49,14 @@ function Slots() {
 
   const selectBooking = (booking) => {
     //Add once login fully functional-- needs userId passed in:
-    // this.props.postBooking(booking);
+    // dispatch(postBooking(booking));
+    const emailObj = { 
+      slotDate: moment(booking.date).format("MMM Do YYYY"),
+      //toAddress: email attached to user account, 
+      slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
+      slotId: booking.id 
+    }
+    dispatch(postEmail(emailObj))
     history.push('/bookingConfirmation')
   }
 
