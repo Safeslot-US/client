@@ -15,7 +15,6 @@ function Slots() {
   // const store = useSelector(state => state.store); 
   const dispatch = useDispatch();
   const [open, set] = useState(false);
-  const [selectedSlot, setSelectedSlot] = useState([]);
   let { storeId } = useParams();
 
   useEffect(() => {
