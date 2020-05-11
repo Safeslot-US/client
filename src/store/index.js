@@ -1,11 +1,12 @@
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import {composeWithDevTools} from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import slotsReducer from './reducers/slotsReducer';
 import storeReducer from './reducers/storeReducer';
+import bookingsReducer from './reducers/bookingsReducer';
 
-const reducer = combineReducers({slots: slotsReducer, store: storeReducer})
+const reducer = combineReducers({ slots: slotsReducer, store: storeReducer, bookings: bookingsReducer })
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
@@ -16,3 +17,4 @@ const store = createStore(reducer, middleware)
 export default store;
 export * from "./reducers/slotsReducer"; 
 export * from "./reducers/storeReducer";
+export * from "./reducers/bookingsReducer";

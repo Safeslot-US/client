@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 const Global = createGlobalStyle`
   * {
     box-sizing: border-box;
+
   }
 
   html,
@@ -16,7 +17,7 @@ const Global = createGlobalStyle`
     overflow: hidden;
     user-select: none;
     background: #f5f5f5;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     align-items: center;  
     justify-content: center;

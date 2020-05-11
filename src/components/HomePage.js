@@ -3,7 +3,7 @@ import React from 'react'
 const HomePage = function (props) {
         return (
             <div>
-                <h1>Safeslot: Reduce the spread. </h1>
+                <h1>Safeslot: Reduce the spread.</h1> 
                 <h3>Make grocery-buying in COVID-19 as safe, orderly and efficient as possible.</h3> 
                 <ul> 
                 <li>Reserve a slot. </li>
