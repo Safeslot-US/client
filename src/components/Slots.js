@@ -12,14 +12,14 @@ const moment = require("moment");
 
 function Slots() {
   const slots = useSelector(state => state.slots);
-  // const store = useSelector(state => state.store); 
+  const store = useSelector(state => state.store); 
   const dispatch = useDispatch();
   const [open, set] = useState(false);
   let { storeId } = useParams();
 
   useEffect(() => {
     dispatch(fetchAvailSlots(storeId));
-    // dispatch(fetchStore(storeId))
+    dispatch(fetchStore(storeId))
   }, []); 
 
   const springRef = useRef()
@@ -53,6 +53,7 @@ function Slots() {
       slotDate: moment(booking.date).format("MMM Do YYYY"),
       //toAddress: email attached to user account, 
       slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
+      storeName: store.name, 
       slotId: booking.id 
     }
     dispatch(postEmail(emailObj))
