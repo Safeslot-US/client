@@ -12,9 +12,20 @@ const addBooking = booking => {
     return { type: POST_BOOKING, booking }
 }
 
-export const fetchBookings = userId => {
+export const fetchUserBookings = userId => {
     return dispatch => {
         axios.get(`/api/users/${userId}/bookings`)
+            .then(res => res.data)
+            .then(bookings => {
+                dispatch(getBookings(bookings))
+            })
+            .catch(err => console.log(err))
+    }
+}
+
+export const fetchStoreBookings = storeId => {
+    return dispatch => {
+        axios.get(`/api/stores/${storeId}/bookings`)
             .then(res => res.data)
             .then(bookings => {
                 dispatch(getBookings(bookings))
