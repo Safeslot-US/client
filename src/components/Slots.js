@@ -11,7 +11,7 @@ const moment = require("moment");
  //Adapted from https://codesandbox.io/embed/2v716k56pr
 
 function Slots() {
-  const slots = useSelector(state => state.slots);
+  const slots = useSelector(state => state.availSlots);
   const store = useSelector(state => state.store); 
   const dispatch = useDispatch();
   const [open, set] = useState(false);
@@ -47,16 +47,16 @@ function Slots() {
   })
 
   const selectBooking = (booking) => {
-    //Add once login fully functional-- needs userId passed in:
+    //Add once login fully functional-- needs userId and user email passed in:
     // dispatch(postBooking(booking));
-    const emailObj = { 
-      slotDate: moment(booking.date).format("MMM Do YYYY"),
-      //toAddress: email attached to user account, 
-      slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
-      storeName: store.name, 
-      slotId: booking.id 
-    }
-    dispatch(postEmail(emailObj))
+    // const emailObj = { 
+    //   slotDate: moment(booking.date).format("MMM Do YYYY"),
+    //   //toAddress: email attached to user account, 
+    //   slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
+    //   storeName: store.name, 
+    //   slotId: booking.id 
+    // }
+    // dispatch(postEmail(emailObj))
     history.push('/bookingConfirmation')
   }
 
