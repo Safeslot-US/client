@@ -2,10 +2,15 @@ import axios from "axios";
 
 //Action Types 
 const GET_STORE = "GET_STORE";
+const EDIT_STORE = "EDIT_STORE";
 
 //Action Creators 
 const getStore = store => {
     return { type: "GET_STORE", store };
+}
+
+const updateStore = (store) => {
+    return { type: "EDIT_STORE", store}
 }
 
 //Thunks 
@@ -18,6 +23,18 @@ export const fetchStore = (store) => {
             })
             .catch(console.error)
     }
+}
+
+export const editStore = (store, editedObj) => {
+    return dispatch => {
+        axios.patch(`/api/stores/${store.id}`, editedObj)
+            .then(res => res.data) 
+            .then(editedStore => {
+                dispatch(updateStore(editedStore))
+            })
+            .catch(console.error)
+        }
+    
 }
 
 //Reducer 

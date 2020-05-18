@@ -2,12 +2,12 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import slotsReducer from './reducers/slotsReducer';
+import { availSlotsReducer, allSlotsReducer } from './reducers/slotsReducer';
 import storeReducer from './reducers/storeReducer';
 import bookingsReducer from './reducers/bookingsReducer';
 import emailReducer from './reducers/emailReducer';
 
-const reducer = combineReducers({ slots: slotsReducer, store: storeReducer, bookings: bookingsReducer })
+const reducer = combineReducers({ availSlots: availSlotsReducer, allSlots: allSlotsReducer, store: storeReducer, bookings: bookingsReducer })
 
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,

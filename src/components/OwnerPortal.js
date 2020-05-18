@@ -21,7 +21,8 @@ function OwnerPortal(){
     return (
         <>
         <div>{dateToday}</div>
-        {/* <div>{store && store.name }</div> */}
+        <br /> 
+        <div>store's bookings here</div>
         <br /> 
         <a href={`/stores/${storeId}/settings`}>Settings</a> 
         </>
