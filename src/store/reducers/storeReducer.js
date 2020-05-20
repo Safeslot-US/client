@@ -1,4 +1,5 @@
 import axios from "axios";
+import API_URL from "../../common/consts"; 
 
 //Action Types 
 const GET_STORE = "GET_STORE";
@@ -16,7 +17,7 @@ const updateStore = (store) => {
 //Thunks 
 export const fetchStore = (store) => {
     return dispatch => {
-        axios.get(`/api/stores/${store}`)
+        axios.get(`${API_URL}/stores/${store}`)
             .then(res => res.data)
             .then(store => {
                 dispatch(getStore(store))
@@ -27,7 +28,7 @@ export const fetchStore = (store) => {
 
 export const editStore = (store, editedObj) => {
     return dispatch => {
-        axios.patch(`/api/stores/${store.id}`, editedObj)
+        axios.patch(`${API_URL}/stores/${store.id}`, editedObj)
             .then(res => res.data) 
             .then(editedStore => {
                 dispatch(updateStore(editedStore))

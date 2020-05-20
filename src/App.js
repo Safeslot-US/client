@@ -3,7 +3,6 @@ import {ThemeProvider} from 'styled-components'
 import {Routes} from './components'
 import {theme} from './theme'
 
-//superfluous comment so heroku will build? 
 function App() {
   return (
       <div> 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_URL from "../common/consts"; 
 
 const GET_BOOKINGS = 'GET_BOOKINGS';
 
@@ -14,7 +15,7 @@ const addBooking = booking => {
 
 export const fetchUserBookings = userId => {
     return dispatch => {
-        axios.get(`/api/users/${userId}/bookings`)
+        axios.get(`${API_URL}/users/${userId}/bookings`)
             .then(res => res.data)
             .then(bookings => {
                 dispatch(getBookings(bookings))
@@ -25,7 +26,7 @@ export const fetchUserBookings = userId => {
 
 export const fetchStoreBookings = storeId => {
     return dispatch => {
-        axios.get(`/api/stores/${storeId}/bookings`)
+        axios.get(`${API_URL}/stores/${storeId}/bookings`)
             .then(res => res.data)
             .then(bookings => {
                 dispatch(getBookings(bookings))
@@ -36,7 +37,7 @@ export const fetchStoreBookings = storeId => {
 
 export const postBooking = (newBooking, bookingId) => {
     return dispatch => {
-        axios.post("/api/bookings", newBooking)
+        axios.post(`${API_URL}/bookings`, newBooking)
             .then(res => res.data)
             .then(createdBooking => {
                 dispatch(addBooking(createdBooking))

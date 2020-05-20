@@ -1,4 +1,5 @@
 import axios from 'axios';
+import API_URL from "../common/consts"; 
 
 const POST_EMAIL = 'POST_EMAIL';
 
@@ -8,7 +9,7 @@ const addEmail = email => {
 
 export const postEmail = emailObj => {
     return dispatch => {
-        axios.post("/api/mail", emailObj)
+        axios.post(`${API_URL}/mail`, emailObj)
             .then(res => res.data)
             .then(email => {
                 dispatch(addEmail(email))

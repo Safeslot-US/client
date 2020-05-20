@@ -1,4 +1,5 @@
 import axios from "axios";
+import API_URL from "../common/consts"; 
 
 //Action Types 
 const GET_AVAIL_SLOTS = "GET_AVAIL_SLOTS";
@@ -21,7 +22,7 @@ const updateSlot = slot => {
 //Thunks 
 export const fetchAvailSlots = (storeId) => {
     return dispatch => {
-        axios.get('/api/allSlotsToday', storeId)
+        axios.get(`${API_URL}/allSlotsToday`, storeId)
             .then(res => res.data)
             .then(slots => {
                 const avail = slots.filter((booking) => {
@@ -37,7 +38,7 @@ export const fetchAvailSlots = (storeId) => {
 
 export const fetchAllSlotsToday = (storeId) => {
     return dispatch => {
-        axios.get('/api/allSlotsToday', storeId)
+        axios.get(`${API_URL}/allSlotsToday`, storeId)
             .then(res => res.data)
             .then(slots => {
                 dispatch(getAllSlotsToday(slots))
@@ -48,7 +49,7 @@ export const fetchAllSlotsToday = (storeId) => {
 
 export const editSlot = (slotId, newMaxPeoplePerSlot) => {
     return dispatch => {
-        axios.patch(`/api/slots/${slotId}`, { maxPeoplePerSlot: newMaxPeoplePerSlot } )
+        axios.patch(`${API_URL}/slots/${slotId}`, { maxPeoplePerSlot: newMaxPeoplePerSlot } )
             .then(res => res.data)
             .then(updatedSlot => {
                 dispatch(updateSlot(updatedSlot))
