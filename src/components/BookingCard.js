@@ -16,11 +16,6 @@ const useStyles = makeStyles({
   root: {
     minWidth: 275,
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
   title: {
     fontSize: 14,
   },
@@ -29,9 +24,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleCard(props) {
+function BookingCard(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
   const dispatch = useDispatch();
   const slot = useSelector(state => state.slot);
   const store = useSelector(state => state.store);
@@ -54,7 +48,7 @@ export default function SimpleCard(props) {
           { store && store.address }
         </Typography>
         <Typography variant="body2" component="p">
-            Slot Time: { slot && slot.startTime} - { slot && slot.endTime }
+            Slot Time: { slot && moment(slot.startTime, 'HH:mm').format("h:mm a")} - { slot && moment(slot.endTime, 'HH:mm').format("h:mm a")}
             <br /> 
             QR Code: 
           <br />
@@ -66,3 +60,5 @@ export default function SimpleCard(props) {
     </Card>
   );
 }
+
+export default BookingCard; 

@@ -17,15 +17,11 @@ function UserBookings() {
     dispatch(fetchUserBookings(userId))
   }, []); 
 
-  //render bookings. 
-    //for each booking, render a booking card 
-
-  console.log('bookings are... ', userBookings);
     return (
       <>
       <h1>Your Bookings</h1>
-      { userBookings ? userBookings.map((booking, i) => 
-      <BookingCard key={booking.id} number={i} booking={booking}/>)
+      { userBookings ? userBookings.map((booking) => 
+      < BookingCard key={ booking.id } booking= { booking }/>)
     : "You haven't made any bookings yet." }
     </>
     )
