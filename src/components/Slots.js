@@ -49,15 +49,20 @@ function Slots() {
   const selectBooking = (booking) => {
     //Add once login fully functional-- needs userId and user email passed in:
     // dispatch(postBooking(booking));
+
+    //generate QR code for booking
+    // const generatedQRcode = 
+    
     // const emailObj = { 
     //   slotDate: moment(booking.date).format("MMM Do YYYY"),
     //   //toAddress: email attached to user account, 
     //   slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
     //   storeName: store.name, 
-    //   slotId: booking.id 
+    //   slotId: booking.id, 
+    //   QRcode: generatedQRcode
     // }
     // dispatch(postEmail(emailObj))
-    history.push('/bookingConfirmation')
+    // history.push('/bookingConfirmation')
   }
 
   // First runs the springRef then runs the transferRef 

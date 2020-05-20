@@ -46,7 +46,7 @@ export const postBooking = (newBooking, bookingId) => {
     }
 }
 
-const bookingsReducer = function(state=null, action) {
+export const userBookingsReducer = function(state=null, action) {
     switch (action.type) {
         case GET_BOOKINGS: 
             return action.bookings
@@ -55,4 +55,11 @@ const bookingsReducer = function(state=null, action) {
     }
 }
 
-export default bookingsReducer; 
+export const storeBookingsReducer = function(state=null, action) {
+    switch (action.type) {
+        case GET_BOOKINGS: 
+            return action.bookings
+        default: 
+            return state; 
+    }
+}

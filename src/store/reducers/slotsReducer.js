@@ -4,6 +4,7 @@ import { API_URL } from "../../common/consts";
 //Action Types 
 const GET_AVAIL_SLOTS = "GET_AVAIL_SLOTS";
 const GET_ALL_SLOTS_TODAY = "GET_ALL_SLOTS_TODAY";
+const GET_SLOT = "GET_SLOT";
 const UPDATE_SLOT = "UPDATE_SLOT";
 
 //Action Creators 
@@ -17,6 +18,10 @@ const getAllSlotsToday = slots => {
 
 const updateSlot = slot => {
     return { type: "UPDATE_SLOTS", slot };
+}
+
+const getSlot = slot => {
+    return { type: "GET_SLOT", slot };
 }
 
 //Thunks 
@@ -58,6 +63,17 @@ export const editSlot = (slotId, newMaxPeoplePerSlot) => {
     }
 }
 
+export const fetchSlot = slotId => {
+    return dispatch => {
+        axios.get(`${API_URL}/slots/${slotId}`)
+            .then(res => res.data)
+            .then(slot => {
+                dispatch(getSlot(slot))
+            })
+            .catch(console.error)
+    }
+}
+
 //Reducer 
 export const availSlotsReducer = function(state=null, action ){
     switch (action.type) {
@@ -78,5 +94,14 @@ export const allSlotsReducer = function(state=null, action) {
             ))
         default: 
             return state;
+    }
+}
+
+export const slotReducer = function(state=null, action) {
+    switch (action.type) {
+        case GET_SLOT: 
+            return action.slot; 
+        default: 
+            return state; 
     }
 }
