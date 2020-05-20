@@ -1,5 +1,5 @@
 import axios from "axios";
-import API_URL from "../../common/consts"; 
+import { API_URL } from "../../common/consts"; 
 
 //Action Types 
 const GET_AVAIL_SLOTS = "GET_AVAIL_SLOTS";
