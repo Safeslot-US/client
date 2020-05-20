@@ -1,5 +1,5 @@
 import axios from 'axios';
-import API_URL from "../common/consts"; 
+import API_URL from "../../common/consts"; 
 
 const GET_BOOKINGS = 'GET_BOOKINGS';
 
