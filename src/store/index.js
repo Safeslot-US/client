@@ -6,6 +6,7 @@ import { availSlotsReducer, allSlotsReducer, slotReducer } from './reducers/slot
 import storeReducer from './reducers/storeReducer';
 import { userBookingsReducer, storeBookingsReducer } from './reducers/bookingsReducer';
 import emailReducer from './reducers/emailReducer';
+import userReducer from './reducers/userReducer';
 
 const reducer = combineReducers(
   { 
@@ -14,7 +15,8 @@ const reducer = combineReducers(
     slot: slotReducer,
     store: storeReducer, 
     userBookings: userBookingsReducer, 
-    storeBookings: storeBookingsReducer 
+    storeBookings: storeBookingsReducer, 
+    user: userReducer
   }
 );
 
@@ -30,3 +32,4 @@ export * from "./reducers/slotsReducer";
 export * from "./reducers/storeReducer";
 export * from "./reducers/bookingsReducer";
 export * from "./reducers/emailReducer";
+export * from "./reducers/userReducer";

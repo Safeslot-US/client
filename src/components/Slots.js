@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAvailSlots, fetchStore, postBooking, postEmail } from "../store"
+import { fetchAvailSlots, fetchAllSlotsToday, fetchStore, postBooking, postEmail } from "../store"
 import { useParams } from "react-router-dom";
 import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
 import { Global, Container, Item } from '../styles'
@@ -13,12 +13,14 @@ const moment = require("moment");
 function Slots() {
   const slots = useSelector(state => state.availSlots);
   const store = useSelector(state => state.store); 
+  const allSlotsToday = useSelector(state => state.allSlotsToday);
   const dispatch = useDispatch();
   const [open, set] = useState(false);
   let { storeId } = useParams();
 
   useEffect(() => {
     dispatch(fetchAvailSlots(storeId));
+    dispatch(fetchAllSlotsToday(storeId));
     dispatch(fetchStore(storeId))
   }, []); 
 

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from "react-redux"
 import { fetchSlot, fetchStore } from "../store";
-import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -24,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-function BookingCard(props) {
+function UserBookingCard(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const slot = useSelector(state => state.slot);
@@ -61,4 +60,4 @@ function BookingCard(props) {
   );
 }
 
-export default BookingCard; 
+export default UserBookingCard; 

@@ -65,7 +65,7 @@ export const editSlot = (slotId, newMaxPeoplePerSlot) => {
 
 export const fetchSlot = slotId => {
     return dispatch => {
-        axios.get(`${API_URL}/slots/${slotId}`)
+        axios.get(`${API_URL}/slots/${slotId}?filter[include][bookings]`)
             .then(res => res.data)
             .then(slot => {
                 dispatch(getSlot(slot))
