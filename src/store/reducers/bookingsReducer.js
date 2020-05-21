@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_URL } from "../../common/consts"; 
 
 const GET_BOOKINGS = 'GET_BOOKINGS';
 
@@ -12,9 +13,9 @@ const addBooking = booking => {
     return { type: POST_BOOKING, booking }
 }
 
-export const fetchBookings = userId => {
+export const fetchUserBookings = userId => {
     return dispatch => {
-        axios.get(`/api/users/${userId}/bookings`)
+        axios.get(`${API_URL}/users/${userId}/bookings`)
             .then(res => res.data)
             .then(bookings => {
                 dispatch(getBookings(bookings))
@@ -23,9 +24,24 @@ export const fetchBookings = userId => {
     }
 }
 
+export const fetchStoreBookings = storeId => {
+    return dispatch => {
+        axios.get(`${API_URL}/allSlotsToday`, storeId)
+            .then(res => res.data)
+            .then(bookings => {
+                const booked = bookings.filter(booking => {
+                    let numBookings = booking.bookings.length > 0; 
+                    return numBookings; 
+                })
+                dispatch(getBookings(booked))
+            })
+            .catch(err => console.log(err))
+    }
+}
+
 export const postBooking = (newBooking, bookingId) => {
     return dispatch => {
-        axios.post("/api/bookings", newBooking)
+        axios.post(`${API_URL}/bookings`, newBooking)
             .then(res => res.data)
             .then(createdBooking => {
                 dispatch(addBooking(createdBooking))
@@ -34,7 +50,7 @@ export const postBooking = (newBooking, bookingId) => {
     }
 }
 
-const bookingsReducer = function(state=null, action) {
+export const userBookingsReducer = function(state=null, action) {
     switch (action.type) {
         case GET_BOOKINGS: 
             return action.bookings
@@ -43,4 +59,11 @@ const bookingsReducer = function(state=null, action) {
     }
 }
 
-export default bookingsReducer; 
+export const storeBookingsReducer = function(state=null, action) {
+    switch (action.type) {
+        case GET_BOOKINGS: 
+            return action.bookings
+        default: 
+            return state; 
+    }
+}

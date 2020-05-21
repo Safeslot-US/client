@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchAvailSlots, fetchStore, postBooking, postEmail } from "../store"
+import { fetchAvailSlots, fetchAllSlotsToday, fetchStore, postBooking, postEmail } from "../store"
 import { useParams } from "react-router-dom";
 import { useTransition, useSpring, useChain, config, animated } from 'react-spring'
 import { Global, Container, Item } from '../styles'
@@ -11,14 +11,16 @@ const moment = require("moment");
  //Adapted from https://codesandbox.io/embed/2v716k56pr
 
 function Slots() {
-  const slots = useSelector(state => state.slots);
+  const slots = useSelector(state => state.availSlots);
   const store = useSelector(state => state.store); 
+  const allSlotsToday = useSelector(state => state.allSlotsToday);
   const dispatch = useDispatch();
   const [open, set] = useState(false);
   let { storeId } = useParams();
 
   useEffect(() => {
     dispatch(fetchAvailSlots(storeId));
+    dispatch(fetchAllSlotsToday(storeId));
     dispatch(fetchStore(storeId))
   }, []); 
 
@@ -47,17 +49,22 @@ function Slots() {
   })
 
   const selectBooking = (booking) => {
-    //Add once login fully functional-- needs userId passed in:
+    //Add once login fully functional-- needs userId and user email passed in:
     // dispatch(postBooking(booking));
-    const emailObj = { 
-      slotDate: moment(booking.date).format("MMM Do YYYY"),
-      //toAddress: email attached to user account, 
-      slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
-      storeName: store.name, 
-      slotId: booking.id 
-    }
-    dispatch(postEmail(emailObj))
-    history.push('/bookingConfirmation')
+
+    //generate QR code for booking
+    // const generatedQRcode = 
+    
+    // const emailObj = { 
+    //   slotDate: moment(booking.date).format("MMM Do YYYY"),
+    //   //toAddress: email attached to user account, 
+    //   slotTime: `${booking.formattedStartTime} - ${booking.formattedEndTime}`, 
+    //   storeName: store.name, 
+    //   slotId: booking.id, 
+    //   QRcode: generatedQRcode
+    // }
+    // dispatch(postEmail(emailObj))
+    // history.push('/bookingConfirmation')
   }
 
   // First runs the springRef then runs the transferRef 
