@@ -9,6 +9,8 @@ const HomePage = function (props) {
                 <li>Reserve a slot. </li>
                 <li>We'll email you a confirmation. </li>
                 <li>Stay safely at home or wait in the car until your slot is called. </li>
+
+                Testingggg!!!!!!
                 </ul> 
 
                 <a href="http://localhost:3000/auth/google">Sign In with Google</a>

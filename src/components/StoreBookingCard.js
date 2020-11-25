@@ -27,13 +27,22 @@ const useStyles = makeStyles({
 function StoreBookingCard(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const slot = useSelector(state => state.slot);
+  // const slot = useSelector(state => state.slot);
+  const slot = props.slot; 
   const user = useSelector(state => state.user);
 
   useEffect(() => {
-    dispatch(fetchSlot(props.booking.slotId));
+    // dispatch(fetchSlot(props.booking.slotId));
     dispatch(fetchUser(props.booking.userId))
   }, []);
+
+  function usernameOrEmail(user) {
+    if (user.firstName && user.lastName) {
+      return `${user.firstName} ${user.lastName}`
+    } else {
+      return user.email
+    }
+  }
 
   return (
     <Card className={classes.root}>
@@ -45,7 +54,7 @@ function StoreBookingCard(props) {
           
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-            Name: {user ? `${user.firstName} ${user.lastName}` : null}
+            Name: {user ? usernameOrEmail(user) : null }
         </Typography>
         <Typography variant="body2" component="p">
             Slot Time: { slot ? moment(slot.startTime, 'HH:mm').format("h:mm a") : null} - { slot ? moment(slot.endTime, 'HH:mm').format("h:mm a") : null}

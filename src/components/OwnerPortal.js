@@ -63,7 +63,7 @@ function OwnerPortal(){
                                  <Typography className={classes.heading}>{moment(baseHour, "HH:mm").format("h:mm a")}</Typography>
                                 </ExpansionPanelSummary> 
                                 <ExpansionPanelDetails>
-                                <Typography>
+                                <Typography component={'span'}>
                                        { slotsByHour[baseHour].map(slot => {
                                            return (
                                            <div key={slot.id}> <a href= {slot && `/slots/${slot.id}`}>{`${moment(slot.startTime, "HH:mm").format("h:mm")}`} - {`${moment(slot.endTime, "HH:mm").format("h:mm a")}`}</a> </div>

@@ -27,15 +27,10 @@ const getSlot = slot => {
 //Thunks 
 export const fetchAvailSlots = (storeId) => {
     return dispatch => {
-        axios.get(`${API_URL}/allSlotsToday`, storeId)
+        axios.get(`${API_URL}/stores/${storeId}/availableSlots`)
             .then(res => res.data)
             .then(slots => {
-                const avail = slots.filter((booking) => {
-                    let numBookings = booking.bookings.length; 
-                    let maxPeoplePerSlot = booking.maxPeoplePerSlot; 
-                    return numBookings < maxPeoplePerSlot; 
-                })
-                dispatch(getAvailSlots(avail))
+                dispatch(getAvailSlots(slots))
             })
             .catch(console.error)
     }
@@ -43,7 +38,7 @@ export const fetchAvailSlots = (storeId) => {
 
 export const fetchAllSlotsToday = (storeId) => {
     return dispatch => {
-        axios.get(`${API_URL}/allSlotsToday`, storeId)
+        axios.get(`${API_URL}/stores/${storeId}/allSlotsToday`)
             .then(res => res.data)
             .then(slots => {
                 dispatch(getAllSlotsToday(slots))

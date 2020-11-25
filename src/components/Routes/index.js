@@ -7,6 +7,7 @@ import OwnerSettings from "../OwnerSettings";
 import Slots from '../Slots';
 import UserBookings from "../UserBookings";
 import BookedSlot from "../BookedSlot";
+import Test from "../Test";
 
 class Routes extends React.Component {
 
@@ -20,6 +21,7 @@ class Routes extends React.Component {
         <Route exact path="/slots/:slotId" component={ BookedSlot } />
         <Route exact path ="/stores/:storeId/settings" component= { OwnerSettings } /> 
         <Route exact path="/bookingConfirmation" component= { BookingConfirmation } /> 
+        <Route exact path="/test" component={ Test } /> 
         <Route render={() => <Redirect to="/" />} />
       </Switch>
     )

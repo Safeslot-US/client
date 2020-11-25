@@ -13,7 +13,7 @@ const moment = require("moment");
 function Slots() {
   const slots = useSelector(state => state.availSlots);
   const store = useSelector(state => state.store); 
-  const allSlotsToday = useSelector(state => state.allSlotsToday);
+  const allSlotsToday = useSelector(state => state.allSlots);
   const dispatch = useDispatch();
   const [open, set] = useState(false);
   let { storeId } = useParams();

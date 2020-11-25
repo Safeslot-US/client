@@ -10,19 +10,21 @@ function BookedSlot() {
     const user = useSelector(state => state.user);
     let { slotId } = useParams();
    
+    //so actually i guess it's better to just fetch all the bookings for this time slot, an
     useEffect(() => {
       dispatch(fetchSlot(slotId))
     }, []);
+
+    const bookings = slot && slot.bookings.map(booking => {
+       return <StoreBookingCard key={booking.id} booking={booking} slot={slot} />
+    })
 
     return (
      <div>
          <br /> 
          <br /> 
         <br /> 
-         { slot ? slot.bookings.map(booking => {
-             return <StoreBookingCard key={booking.id} booking={booking}/> 
-         }) : "This slot has no bookings"
-        }
+        { bookings } 
      </div>
     );
   }

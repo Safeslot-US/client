@@ -26,7 +26,7 @@ export const fetchUserBookings = userId => {
 
 export const fetchStoreBookings = storeId => {
     return dispatch => {
-        axios.get(`${API_URL}/allSlotsToday`, storeId)
+        axios.get(`${API_URL}/stores/${storeId}/allSlotsToday`)
             .then(res => res.data)
             .then(bookings => {
                 const booked = bookings.filter(booking => {
